@@ -2,12 +2,7 @@ import Action from './classes/Action.js';
 import ActionManager from './classes/ActionManager.js';
 
 let manager = new ActionManager();
-// manager.addAction(new Action('income', 'salary', 40000));
-// manager.addAction(new Action('income', 'babySiter', 7000));
-// manager.addAction(new Action('expense', 'ikea', 5000));
 
-// console.log(manager.actions);
-// console.log(manager.balance);
 
 function showActionTable() {
   document.getElementById('actions').innerHTML = '';
@@ -30,9 +25,13 @@ window.addNewAction = () => {
   let amount = document.getElementById('amount').value;
   manager.addAction(new Action(type, description, amount));
   showActionTable();
-
   document.getElementById('description').value = '';
   document.getElementById('amount').value = '';
+
+  if(description === '') {
+    alert("Please fill the field")
+    this.deleteAction()
+  }
 };
 
 window.updateAmount = (actionId) => {
